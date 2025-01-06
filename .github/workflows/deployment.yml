@@ -59,7 +59,7 @@ jobs:
             name: build-backend
             path: 
                 ./backend/dist
-                package.json
+                .backend/package.json
  
 
   deploy:
