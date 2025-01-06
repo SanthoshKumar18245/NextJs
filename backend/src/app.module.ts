@@ -8,7 +8,8 @@ import { UsersController } from './users/users.controller';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: '192.168.1.162', // Change to your MySQL host if different
+      host: '3.6.192.30',
+      //host: '192.168.1.162', // Change to your MySQL host if different
      // host: '192.168.1.16',
       port: 3306, // Default port for MySQL
       username: 'appuser', // Replace with your MySQL username
