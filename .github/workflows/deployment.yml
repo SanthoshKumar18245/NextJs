@@ -16,7 +16,7 @@ jobs:
       with: 
         node-version : 20
     - name: changing the frontend
-      run: cd frontend
+      run: cd ../../frontend
       working-directory: ./frontend
     - name: installing the neccessary packages
       run: npm install
@@ -34,7 +34,7 @@ jobs:
         with: 
           node-version : 20
       - name: changing the backend
-        run: cd backend
+        run: cd ../../backend
         working-directory: ./backend
       - name: installing the neccessary packages
         run: npm install
@@ -48,12 +48,12 @@ jobs:
       - build-backend
     steps:
       - name: changing to frontend
-        run: cd frontend
+        run: cd ../../frontend
         working-directory: ./frontend
       - name: starting the frontend
         run:  npm start
       - name: changing to backend
-        run: cd backend
+        run: cd ../../backend
         working-directory: ./backend
       - name: starting the frontend
         run:  npm start
