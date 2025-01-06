@@ -57,6 +57,8 @@ jobs:
       - build-backend
     steps:
       # to run frontend we need backend to be running
+      - name : testing the directory
+        run : ls -a
       - name: changing to backend
         working-directory: ./backend
         run:  npm start
