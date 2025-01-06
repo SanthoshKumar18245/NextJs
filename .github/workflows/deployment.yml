@@ -57,7 +57,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
             name: build-backend
-            path: ./backend/dist
+            path: 
+                ./backend/dist
+                package.json
  
 
   deploy:
