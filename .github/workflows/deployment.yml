@@ -53,9 +53,7 @@ jobs:
         run: |
           npm install
           npm run build
-      - name: removing the node modules
-        working-directory: backend
-        run: rm -rf backend/node_modules 
+
       - name: uploading the backend
         uses: actions/upload-artifact@v3
         with:
