@@ -31,59 +31,59 @@ jobs:
         npm install
         npm run build
     - name: checking the path and build files
-      run: ls -d frontend/*/ 
+      run: ls -d frontend/.next
 
-    - name: checking the path and build files
-      uses: actions/upload-artifact@v3
-      with:
-        name: build-frontend
-        path: ./frontend/.next
+    # - name: checking the path and build files
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: build-frontend
+    #     path: ./frontend/.next
 
 
-  build-backend:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-            persist-credentials: false
-      - name: setup nodeJS
-        uses: actions/setup-node@v2
-        with: 
-          node-version : 20
-      - name: installing the neccessary packages
-        working-directory: ./backend
-        run: |
-          npm install
-          npm run build
-      - name: uploading the backend
-        uses: actions/upload-artifact@v3
-        with:
-            name: upload-backend
-            path: ./backend/dist
+#   build-backend:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+#         with:
+#             persist-credentials: false
+#       - name: setup nodeJS
+#         uses: actions/setup-node@v2
+#         with: 
+#           node-version : 20
+#       - name: installing the neccessary packages
+#         working-directory: ./backend
+#         run: |
+#           npm install
+#           npm run build
+#       - name: uploading the backend
+#         uses: actions/upload-artifact@v3
+#         with:
+#             name: upload-backend
+#             path: ./backend/dist
  
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: 
-      - build-frontend
-      - build-backend
-    steps:
-      - name: downloading frontend
-        uses: actions/download-artifact@v3
-        with:
-            name: build-frontend
-            path: ./frontend
-      - name: downloading backend
-        uses: actions/download-artifact@v3
-        with:
-            name: build-backend
-            path: ./backend/dist
-      # to run frontend we need backend to be running
-      - name: changing to backend
-        working-directory: ./backend
-        run:  npm start
-      - name: starting the frontend
-        working-directory: ./frontend
-        run:  npm start
+#   deploy:
+#     runs-on: ubuntu-latest
+#     needs: 
+#       - build-frontend
+#       - build-backend
+#     steps:
+#       - name: downloading frontend
+#         uses: actions/download-artifact@v3
+#         with:
+#             name: build-frontend
+#             path: ./frontend
+#       - name: downloading backend
+#         uses: actions/download-artifact@v3
+#         with:
+#             name: build-backend
+#             path: ./backend/dist
+#       # to run frontend we need backend to be running
+#       - name: changing to backend
+#         working-directory: ./backend
+#         run:  npm start
+#       - name: starting the frontend
+#         working-directory: ./frontend
+#         run:  npm start
 
