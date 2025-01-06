@@ -17,9 +17,9 @@ jobs:
         node-version : 20
     - name: installing the neccessary packages
       working-directory: ./frontend
-      run: npm install
-    - name: building the frontend
-      run: npm run build
+      run: |
+        npm install
+        npm run build
 
 
   build-backend:
@@ -33,9 +33,9 @@ jobs:
           node-version : 20
       - name: installing the neccessary packages
         working-directory: ./backend
-        run: npm install
-      - name: building the backend
-        run: npm run build
+        run: |
+          npm install
+          npm run build
 
   deploy:
     runs-on: ubuntu-latest
