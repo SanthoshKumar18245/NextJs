@@ -30,6 +30,8 @@ jobs:
       run: |
         npm install
         npm run build
+    - name: checking the path and build files
+      run : ls -la
     - name: uploading the frontend
       uses: actions/upload-artifact@v3
       with:
