@@ -30,6 +30,11 @@ jobs:
       run: |
         npm install
         npm run build
+    - name: uploading the frontend
+      uses: actions/upload-artifect@v3
+      with:
+        name: build-frontend
+        path: ./frontend/.next
 
 
   build-backend:
@@ -48,6 +53,11 @@ jobs:
         run: |
           npm install
           npm run build
+      - name: uploading the backend
+        uses: actions/upload-artifect@v3
+        with:
+            name: upload-backend
+            path: ./backend/dist
  
 
   deploy:
@@ -56,9 +66,17 @@ jobs:
       - build-frontend
       - build-backend
     steps:
+      - name: downloading frontend
+        uses: actions/download-artifect@v3
+        with:
+            name: build-frontend
+            path: ./frontend/.next
+      - name: downloading backend
+        uses: actions/download-artifect@v3
+        with:
+            name: build-backend
+            path: ./backend/dist
       # to run frontend we need backend to be running
-      - name : testing the directory
-        run : ls -a
       - name: changing to backend
         working-directory: ./backend
         run:  npm start
