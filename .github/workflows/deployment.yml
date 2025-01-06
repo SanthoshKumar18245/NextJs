@@ -57,9 +57,12 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
             name: build-backend
-            path: 
-                ./backend/dist
-                .backend/package.json
+            path: ./backend/dist
+      - name: uploading the backend package
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-backend-package
+          path: .backend/package.json
  
 
   deploy:
@@ -78,6 +81,11 @@ jobs:
         with:
             name: build-backend
             path: ./backend/dist
+      - name: downloading backend package.json
+        uses: actions/download-artifact@v3
+        with:
+          name: build-backend-package
+          path: ./backend/package.json
       # to run frontend we need backend to be running
       - name: changing to backend
         working-directory: ./backend
