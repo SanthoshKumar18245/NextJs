@@ -34,7 +34,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: build-frontend
-        path: ./frontend/.next
+        path: ./frontend
 
 
   build-backend:
@@ -70,7 +70,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
             name: build-frontend
-            path: ./frontend/.next
+            path: ./frontend
       - name: downloading backend
         uses: actions/download-artifact@v3
         with:
