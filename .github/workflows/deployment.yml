@@ -56,7 +56,7 @@ jobs:
       - name: uploading the backend
         uses: actions/upload-artifact@v3
         with:
-            name: upload-backend
+            name: build-backend
             path: ./backend/dist
  
 
