@@ -31,13 +31,10 @@ jobs:
         npm install
         npm run build
     - name: checking the path and build files
-      working-directory: ./frontend
-      run : ls -la
-    # - name: uploading the frontend
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: build-frontend
-    #     path: ./frontend
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-frontend
+        path: ./frontend/.next
 
 
   build-backend:
