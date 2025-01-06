@@ -31,7 +31,7 @@ jobs:
         npm install
         npm run build
     - name: uploading the frontend
-      uses: actions/upload-artifect@v3
+      uses: actions/upload-artifact@v3
       with:
         name: build-frontend
         path: ./frontend/.next
@@ -54,7 +54,7 @@ jobs:
           npm install
           npm run build
       - name: uploading the backend
-        uses: actions/upload-artifect@v3
+        uses: actions/upload-artifact@v3
         with:
             name: upload-backend
             path: ./backend/dist
@@ -67,12 +67,12 @@ jobs:
       - build-backend
     steps:
       - name: downloading frontend
-        uses: actions/download-artifect@v3
+        uses: actions/download-artifact@v3
         with:
             name: build-frontend
             path: ./frontend/.next
       - name: downloading backend
-        uses: actions/download-artifect@v3
+        uses: actions/download-artifact@v3
         with:
             name: build-backend
             path: ./backend/dist
