@@ -8,6 +8,14 @@ on:
 jobs:
   build-frontend:
     runs-on: ubuntu-latest
+    # services:
+    #   db:
+    #     image: mysql:8
+    #     env:
+    #       MYSQL_USER : 
+    #       MYSQL_PASSWORD: 
+    #       MYSQL_DATABASE : 
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -43,11 +51,13 @@ jobs:
       - build-frontend
       - build-backend
     steps:
-      #- name: changing to frontend
-      - name: starting the frontend
-        working-directory: ./frontend
-        run:  npm start
+      - name: checkout code
+        uses: actions/checkout@v2
+      # to run frontend we need backend to be running
       - name: changing to backend
         working-directory: ./backend
+        run:  npm start
+      - name: starting the frontend
+        working-directory: ./frontend
         run:  npm start
 
