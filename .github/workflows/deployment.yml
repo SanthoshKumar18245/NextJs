@@ -20,7 +20,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-        persists-credentials: false
+        persist-credentials: false
     - name: setup nodeJS
       uses: actions/setup-node@v2
       with: 
@@ -38,7 +38,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-            persists-credentials: false
+            persist-credentials: false
       - name: setup nodeJS
         uses: actions/setup-node@v2
         with: 
