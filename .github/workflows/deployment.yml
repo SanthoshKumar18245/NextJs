@@ -35,17 +35,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+            persists-credentials: false
       - name: setup nodeJS
         uses: actions/setup-node@v2
         with: 
           node-version : 20
-      - name: Install NestJS CLI globally
-        run: npm install -g @nestjs/cli
       - name: installing the neccessary packages
         working-directory: ./backend
         run: |
           npm install
           npm run build
+ 
 
   deploy:
     runs-on: ubuntu-latest
@@ -53,13 +54,6 @@ jobs:
       - build-frontend
       - build-backend
     steps:
-      - name: checkout code
-        uses: actions/checkout@v2
-      - name: setup nodeJS
-        uses: actions/setup-node@v2
-        with: 
-          node-version : 20
-
       # to run frontend we need backend to be running
       - name: changing to backend
         working-directory: ./backend
