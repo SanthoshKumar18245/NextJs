@@ -1,0 +1,51 @@
+name: deployment
+
+on: 
+ push:
+   branches:
+     - main
+
+jobs:
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: setup nodeJS
+      uses: actions/setup-node@v2
+      with: 
+        node-version : 20
+    - name: changing the frontend
+      run: cd frontend
+    - name: building the frontend
+      run: npm run build
+
+  build-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: setup nodeJS
+        uses: actions/setup-node@v2
+        with: 
+          node-version : 20
+      - name: changing the backend
+        run: cd backend
+      - name: building the backend
+        run: npm run build
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: 
+      - build-frontend
+      - build-backend
+    steps:
+      - name: changing to frontend
+        run: cd frontend
+      - name: starting the frontend
+        run:  npm start
+      - name: changing to backend
+        run: cd backend
+      - name: starting the frontend
+        run:  npm start
+

@@ -14,12 +14,15 @@ const metricExporter = new OTLPMetricExporter({
   url: 'http://localhost:4317', // Replace with your OTLP collector URL
 });
 
+// Create Metric Reader
+const metricReader = new PeriodicExportingMetricReader({
+  exporter: metricExporter,
+});
+
 // Configure OpenTelemetry SDK
 const sdk = new NodeSDK({
   traceExporter,
-  metricReader: new PeriodicExportingMetricReader({
-    exporter: metricExporter,
-  }),
+  metricReader,
   instrumentations: [getNodeAutoInstrumentations()],
 });
 
@@ -30,3 +33,6 @@ try {
 } catch (err) {
   console.error('Error initializing OpenTelemetry SDK', err);
 }
+
+// Export necessary components
+export { sdk, metricReader };
