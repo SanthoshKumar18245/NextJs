@@ -31,7 +31,7 @@ jobs:
         npm install
         npm run build
     - name: checking the path and build files
-      run: ls -d */ 
+      run: ls -d frontend/*/ 
 
     - name: checking the path and build files
       uses: actions/upload-artifact@v3
