@@ -61,6 +61,14 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 20
+      - name: Update PowerShellGet and NuGet
+        shell: powershell
+        run: |
+            Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
+            Install-PackageProvider -Name NuGet -Force -Scope CurrentUser
+            Install-Module -Name PowerShellGet -Force -Scope CurrentUser
+            Update-Module -Name PowerShellGet -Force -Scope CurrentUser
+      
       - name: Install Posh-SSH
         shell: powershell
         run: |
