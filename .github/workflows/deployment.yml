@@ -23,6 +23,8 @@ jobs:
         npm install
         npm run build
         npm start
+      timeout-minutes: 0.5
+
     - name: completed successfully
       run: echo "completed"
 
@@ -43,6 +45,8 @@ jobs:
           npm install
           npm run build
           npm start
+        timeout-minutes: 0.5
+        
 
       - name: completed successfully
         run: echo "completed"
@@ -74,7 +78,7 @@ jobs:
               npm install
               npm run build
               npm start > frontend.log 2>&1 &
-              cd backend
+              cd ../backend
               npm install
               npm run build
               npm  start > backend.log 2>&1 &
