@@ -62,25 +62,29 @@ jobs:
         with:
           node-version: 20
  
-      - name: Deploy to Ubuntu via PowerShell
+      - name: Deploy and Start Services
         shell: powershell
         run: |
-              $password = ConvertTo-SecureString "admin@123" -AsPlainText -Force
-              $credential = New-Object System.Management.Automation.PSCredential("ubuntu@192.168.1.126", $password)
-              $command = @"
-              cd /home/ubuntu/Project
-              git pull origin main
-              cd frontend
-              npm install
-              npm run build
-              npm start > frontend.log 2>&1 &
-              cd ../backend
-              npm install
-              npm run build
-              npm  start > backend.log 2>&1 &
-              "@
-              Invoke-Command -ComputerName your-server-ip -Credential $credential -ScriptBlock {
-                  param ($cmd)
-                  bash -c "$cmd"
-              } -ArgumentList $command
-    
+            # Define credentials
+            $password = ConvertTo-SecureString "admin@123" -AsPlainText -Force
+            $credential = New-Object System.Management.Automation.PSCredential("ubuntu", $password)
+  
+            # SSH to the remote server and execute commands
+            $commands = @"
+            cd /home/ubuntu/Project
+            git pull origin main
+            cd frontend
+            npm install
+            npm run build
+            nohup npm start > frontend.log 2>&1 &
+            cd ../backend
+            npm install
+            npm run build
+            nohup npm start > backend.log 2>&1 &
+            "@
+  
+            # Use SSH to run commands on the Linux server
+            $session = New-SSHSession -ComputerName "192.168.1.126" -Credential $credential
+            Invoke-SSHCommand -SessionId $session.SessionId -Command $commands
+            Remove-SSHSession -SessionId $session.SessionId
+  
