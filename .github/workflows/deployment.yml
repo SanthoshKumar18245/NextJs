@@ -63,7 +63,7 @@ jobs:
           node-version: 20
  
       - name: Deploy to Ubuntu via PowerShell
-        shell: pwsh
+        shell: bash
         run: |
               $password = ConvertTo-SecureString "admin@123" -AsPlainText -Force
               $credential = New-Object System.Management.Automation.PSCredential("ubuntu@192.168.1.126", $password)
