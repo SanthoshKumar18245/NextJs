@@ -55,7 +55,7 @@ jobs:
       - build-backend
     steps:
       - name: checkout code
-        uses: actions/checkouct@v2
+        uses: actions/checkout@v2
 
       - name: installing the node
         uses: actions/setup-node@v2
