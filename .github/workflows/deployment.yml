@@ -69,10 +69,10 @@ jobs:
             Install-Module -Name PowerShellGet -Force -Scope CurrentUser
             Update-Module -Name PowerShellGet -Force -Scope CurrentUser
       
-      - name: Install Posh-SSH
+      - name: Import Posh-SSH
         shell: powershell
         run: |
-            Install-Module -Name Posh-SSH -Force -Scope CurrentUser
+              Import-Module Posh-SSH
  
       - name: Deploy and Start Services
         shell: powershell
