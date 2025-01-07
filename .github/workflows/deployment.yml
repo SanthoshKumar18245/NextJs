@@ -22,8 +22,6 @@ jobs:
       run: |
         npm install
         npm run build
-        npm start
-      timeout-minutes: 1
 
     - name: completed successfully
       run: echo "completed"
@@ -44,9 +42,7 @@ jobs:
         run: |
           npm install
           npm run build
-          npm start
-        timeout-minutes: 1
-        
+  
 
       - name: completed successfully
         run: echo "completed"
